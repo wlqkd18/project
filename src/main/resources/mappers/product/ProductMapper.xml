@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kgitbank.ssg.mybatis.product.ProductMapper">
+	<resultMap type="com.kgitbank.ssg.product.dto.ProductDTO" id="product">
+		<id property="productNo" column="product_no"/>
+		<result property="productName" column="product_name"/>
+		<result property="productPrice" column="product_price"/>
+		<result property="hit" column="hit"/>
+		<result property="imageFileName" column="image_file_name"/>		
+		<result property="saveDate" column="savedate"/>		
+		<result property="productType" column="product_type"/>				
+	</resultMap>
+	
+	<select id="getOuterType" resultMap="product">
+		select * from product where product_type='outer'
+	</select>
+	
+	<insert id="productSave">
+		insert into product(product_no, product_name, product_price, image_file_name, product_type)
+		values((select nvl(max(product_no) + 1, 1) from product), #{productName}, #{productPrice}, #{imageFileName}, #{productType})
+	</insert>
+	
+</mapper>
