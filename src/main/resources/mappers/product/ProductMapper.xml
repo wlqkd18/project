@@ -22,4 +22,8 @@
 		values((select nvl(max(product_no) + 1, 1) from product), #{productName}, #{productPrice}, #{imageFileName}, #{productType})
 	</insert>
 	
+	<select id="getProductList" resultMap="product">
+		select * from product order by product_no desc
+	</select>
+	
 </mapper>

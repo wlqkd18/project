@@ -8,4 +8,5 @@ public interface ProductMapper {
 
 	public List<ProductDTO> getOuterType();
 	public int productSave(ProductDTO dto);
+	public List<ProductDTO> getProductList();
 }

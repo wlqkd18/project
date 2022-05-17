@@ -42,4 +42,11 @@ public class ProductComtroller {
 		out.print(message);
 	}
 	
+	@GetMapping("productManagement")
+	public String productManagement(Model model) {
+		ps.getProductList(model);
+		return "product/productList";
+	}
+	
+	
 }

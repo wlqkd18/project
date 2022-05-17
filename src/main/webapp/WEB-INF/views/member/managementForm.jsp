@@ -12,10 +12,12 @@
 <div class="wrap">
 	<div class="management">
 		<table>
-			<tr><th>관리</th></tr>
-			<tr><th><a href="memberManage">회원관리</a></th></tr>
+			<tr><th>회원 관리</th></tr>
+			<tr><th><a href="memberManage">회원 목록</a></th></tr>
+			<tr><th>상품 관리</th></tr>
+			<tr><th><a href="/ssg/product/productBoard">상품 등록</a></th></tr>
+			<tr><th><a href="/ssg/product/productManagement">상품 삭제/취소</a></th></tr>
 			<tr><th><a href="">전체 주문 내역</a></th></tr>
-			<tr><th><a href="/ssg/product/productBoard">상품</a></th></tr>
 		</table>
 	</div>
 </div>

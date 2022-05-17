@@ -45,4 +45,10 @@ public class ProductService implements IProductService{
 
 		return pfs.getMessage(msg, url);
 	}
+
+	@Override
+	public void getProductList(Model model) {
+		model.addAttribute("productList", mapper.getProductList());
+		
+	}
 }

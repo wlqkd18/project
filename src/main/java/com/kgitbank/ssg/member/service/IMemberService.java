@@ -16,4 +16,5 @@ public interface IMemberService {
 	public void modifySuccess(MemberDTO dto);
 	public void memberList(Model model, MemberDTO dto);
 	public void memberDelete(String id);
+	
 }

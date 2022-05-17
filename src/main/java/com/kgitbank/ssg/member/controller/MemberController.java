@@ -75,7 +75,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("managementForm")
-	public String managementForm() {
+	public String managementForm(Model model) {
 		return "member/managementForm";
 	}
 	

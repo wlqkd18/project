@@ -7,5 +7,5 @@ public interface IProductService {
 
 	public void getOuterType(Model model);
 	public String productSave(MultipartHttpServletRequest mul);
-	
+	public void getProductList(Model model);
 }

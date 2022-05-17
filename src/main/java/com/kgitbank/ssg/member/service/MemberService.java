@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 
 import com.kgitbank.ssg.member.dto.MemberDTO;
 import com.kgitbank.ssg.mybatis.member.MemberMapper;
+import com.kgitbank.ssg.mybatis.product.ProductMapper;
 
 @Service
 public class MemberService implements IMemberService{
