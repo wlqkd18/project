@@ -26,4 +26,12 @@
 		select * from product order by product_no desc
 	</select>
 	
+	<select id="getProductInfo" resultMap="product">
+		select * from product where product_no=#{productNo}
+	</select>
+	
+	<delete id="productDelete">
+		delete from product where product_no=#{productNo}
+	</delete>
+	
 </mapper>

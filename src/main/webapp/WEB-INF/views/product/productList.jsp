@@ -18,7 +18,7 @@
 			<c:forEach var="product" items="${productList}">
 				<tr>
 					<td>${product.productNo}</td>
-					<td>${product.productName}</td>
+					<td><a href="productInfo?productNo=${product.productNo}">${product.productName}</a></td>
 					<td>${product.hit}</td>
 					<td>${product.imageFileName}</td>
 					<td>${product.saveDate}</td>

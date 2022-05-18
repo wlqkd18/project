@@ -36,6 +36,12 @@ public class ProductFileService implements IProductFileService{
 		
 		return message;
 	}
+
+	@Override
+	public void imageFileDelete(String imageFileName) {
+		File file = new File(IMAGE_REPO + "/" + imageFileName);
+		file.delete();
+	}
 	
 	
 }

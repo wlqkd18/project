@@ -51,4 +51,27 @@ public class ProductService implements IProductService{
 		model.addAttribute("productList", mapper.getProductList());
 		
 	}
+
+	@Override
+	public void productInfo(int productNo, Model model) {
+		model.addAttribute("productInfo", mapper.getProductInfo(productNo));
+		
+	}
+
+	@Override
+	public String productDelete(int productNo, String imageFileName) {
+		
+		int result = mapper.productDelete(productNo);
+		pfs.imageFileDelete(imageFileName);
+		String msg, url;
+		
+		if(result == 1) {
+			msg = "상품이 삭제되었습니다."; 
+			url = "/ssg/product/productManagement";
+		}else {
+			msg = "문제가 발생했습니다.";
+			url = "/ssg/product/productInfo?productNo=" + productNo;
+		}
+		return pfs.getMessage(msg, url);
+	}
 }
