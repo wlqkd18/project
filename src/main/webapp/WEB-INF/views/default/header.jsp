@@ -60,6 +60,9 @@
 	.productBoardDiv{
 		width: 700px; margin: auto;
 	}
+	.menuDiv{
+		margin-top: 40px; width: 200px;
+	}
 </style>
 </head>
 <body>
@@ -72,7 +75,7 @@
 	<div class="wrap">
 		<nav>
 			<ul>
-				<li><a href="/ssg/product/outer">Outer</a></li>
+				<li><a href="/ssg/product/productImageForm?productType=outer">Outer</a></li>
 				<li><a href="">Top</a></li>
 				<li><a href="">Pants</a></li>
 				<li><a href="">Shoes</a></li>

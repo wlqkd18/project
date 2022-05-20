@@ -6,7 +6,7 @@ import com.kgitbank.ssg.product.dto.ProductDTO;
 
 public interface ProductMapper {
 
-	public List<ProductDTO> getOuterType();
+	public List<ProductDTO> getProduct(String productType);
 	public int productSave(ProductDTO dto);
 	public List<ProductDTO> getProductList();
 	public ProductDTO getProductInfo(int productNo);

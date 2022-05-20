@@ -13,8 +13,8 @@
 		<result property="productType" column="product_type"/>				
 	</resultMap>
 	
-	<select id="getOuterType" resultMap="product">
-		select * from product where product_type='outer'
+	<select id="getProduct" resultMap="product">
+		select * from product where product_type=#{productType}
 	</select>
 	
 	<insert id="productSave">
@@ -33,5 +33,7 @@
 	<delete id="productDelete">
 		delete from product where product_no=#{productNo}
 	</delete>
+	
+	
 	
 </mapper>

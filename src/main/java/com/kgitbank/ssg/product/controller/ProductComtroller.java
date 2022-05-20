@@ -23,10 +23,10 @@ public class ProductComtroller {
 	
 	@Autowired ProductService ps;
 	
-	@GetMapping("outer")
-	public String outerForm(Model model) {
-		ps.getOuterType(model);
-		return "product/outerForm";
+	@GetMapping("productImageForm")
+	public String outerForm(@RequestParam String productType, Model model) {
+		ps.getProductInfo(productType, model);
+		return "product/productImageForm";
 	}
 	
 	@GetMapping("productBoard")

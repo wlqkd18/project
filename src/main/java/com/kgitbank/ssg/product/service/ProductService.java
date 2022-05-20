@@ -1,5 +1,8 @@
 package com.kgitbank.ssg.product.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -10,14 +13,14 @@ import com.kgitbank.ssg.mybatis.product.ProductMapper;
 import com.kgitbank.ssg.product.dto.ProductDTO;
 
 @Service
-public class ProductService implements IProductService{
+public class ProductService implements IProductService {
 
 	@Autowired ProductMapper mapper;
 	@Autowired ProductFileService pfs;
 
 	@Override
-	public void getOuterType(Model model) {
-		model.addAttribute("outer", mapper.getOuterType());
+	public void getProductInfo(String productType, Model model) {
+		model.addAttribute("productInfo", mapper.getProduct(productType));
 	}
 
 	@Override
