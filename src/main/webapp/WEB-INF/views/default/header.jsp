@@ -63,6 +63,32 @@
 	.menuDiv{
 		margin-top: 40px; width: 200px;
 	}
+	.productDiv{
+		width: 650px; margin-left: 400px;
+		margin-top: -100px; 
+	}
+	.imageFileDiv img{
+		margin-right: 50px; margin-bottom: 50px;
+	}
+	.productImageDiv{
+		width: 300px; margin: auto;
+	}
+	.productInfoDiv{
+		width: 400px; margin: auto; text-align: center; 
+	}
+	.buttonDiv{
+		text-align: right;
+	}
+	.sizeDiv{
+		width: 270px; margin: auto; text-align: center;
+	}
+	.imageInfoDiv{
+		width: 250px; text-align: center; margin-top: -30px; margin-bottom: 20px;
+	}
+	.productImageInfoDiv{
+		float: left; width: 50%; 
+	}
+	
 </style>
 </head>
 <body>
@@ -75,11 +101,11 @@
 	<div class="wrap">
 		<nav>
 			<ul>
-				<li><a href="/ssg/product/productImageForm?productType=outer">Outer</a></li>
-				<li><a href="">Top</a></li>
-				<li><a href="">Pants</a></li>
-				<li><a href="">Shoes</a></li>
-				<li><a href="">Accessory</a></li>
+				<li><a href="/ssg/product/productImageForm?productType=Outer">Outer</a></li>
+				<li><a href="/ssg/product/productImageForm?productType=Top">Top</a></li>
+				<li><a href="/ssg/product/productImageForm?productType=Pants">Pants</a></li>
+				<li><a href="/ssg/product/productImageForm?productType=Shoes">Shoes</a></li>
+				<li><a href="/ssg/product/productImageForm?productType=Accessory">Accessory</a></li>
 			</ul>
 		</nav>
 	</div>

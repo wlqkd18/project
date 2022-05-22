@@ -1,5 +1,7 @@
 package com.kgitbank.ssg.product.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -9,12 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.kgitbank.ssg.product.dto.ProductDTO;
+import com.kgitbank.ssg.product.service.ProductFileService;
 import com.kgitbank.ssg.product.service.ProductService;
 
 @Controller
@@ -24,7 +29,7 @@ public class ProductComtroller {
 	@Autowired ProductService ps;
 	
 	@GetMapping("productImageForm")
-	public String outerForm(@RequestParam String productType, Model model) {
+	public String productImageForm(@RequestParam String productType, Model model) {
 		ps.getProductInfo(productType, model);
 		return "product/productImageForm";
 	}
@@ -61,6 +66,21 @@ public class ProductComtroller {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;charset=utf-8");
 		out.print(message);
+	}
+	
+	@GetMapping("imageFileDownload")
+	public void imageFileDownload(@RequestParam String imageFileName, HttpServletResponse response) throws Exception {
+		response.addHeader("Content-disposition", "attachment; imageFileName=" + imageFileName);
+		File file = new File(ProductFileService.IMAGE_REPO + "\\" + imageFileName);
+		FileInputStream in = new FileInputStream(file);
+		FileCopyUtils.copy(in, response.getOutputStream());
+		in.close();
+	}
+	
+	@GetMapping("productForm")
+	public String outerForm(@RequestParam int productNo, Model model) {
+		ps.productInfo(productNo, model);
+		return "product/productForm";
 	}
 	
 }

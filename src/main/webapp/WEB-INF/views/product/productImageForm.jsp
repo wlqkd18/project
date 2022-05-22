@@ -11,16 +11,18 @@
 <c:import url="../default/header.jsp"/>
 <c:import url="../default/menu.jsp"/>
 	<div class="wrap">
-		<div class="imageDiv">
-			<c:forEach var="name" items="${productInfo}">
-				<table>
-					<tr>
-						<td>
-							${name.productName}
-						</td>
-					</tr>
-				</table>
-			</c:forEach>
+		<div class="productDiv">
+			<div class="imageFileDiv">
+				<c:forEach var="product" items="${productInfo}">
+					<div class="productImageInfoDiv">
+						<a href="/ssg/product/productForm?productNo=${product.productNo}"><img src="/ssg/product/imageFileDownload?imageFileName=${product.imageFileName}" width=250px height=250px></a>
+						<div class="imageInfoDiv">
+							<b>${product.productName}</b><br>
+							<b>${product.productPrice}원</b>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 </body>
