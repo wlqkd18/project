@@ -73,8 +73,11 @@
 	.productImageDiv{
 		width: 300px; margin: auto;
 	}
+	.productImageDiv img{
+		border: 1px solid black;
+	}
 	.productInfoDiv{
-		width: 400px; margin: auto; text-align: center; 
+		width: 600px; margin: auto; text-align: center; 
 	}
 	.buttonDiv{
 		text-align: right;
@@ -87,6 +90,9 @@
 	}
 	.productImageInfoDiv{
 		float: left; width: 50%; 
+	}
+	.productImageInfoDiv img{
+		border: 1px solid black;
 	}
 	
 </style>

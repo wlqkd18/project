@@ -19,21 +19,25 @@ function imgURL(data){
 		}
 	}
 }
+function init(){
+	$("#checkOption").val("${productInfo.productType}").prop("selected", true);	
+
+}
 </script>
 </head>
-<body>
+<body onload="init()">
 <c:import url="../default/header.jsp"/>
 <div class="wrap">
 	<div class="productBoardDiv">
 		<form action="productSave" method="post" enctype="multipart/form-data">
 			<b>상품명</b><br>
-			<input type="text" name="productName">
+			<input type="text" name="productName" value="${productInfo.productName}">
 			<hr>
 			<b>가격</b><br>
-			<input type="text" name="productPrice">
+			<input type="text" name="productPrice" value="${productInfo.productPrice}">
 			<hr>
 			<b>상품 분류</b>
-			<select name="productType">
+			<select name="productType" id="checkOption">
 				<option>Outer</option>
 				<option>Top</option>
 				<option>Pants</option>
@@ -43,7 +47,7 @@ function imgURL(data){
 			<hr>
 			<b>상품 이미지 파일</b><br>
 			<input type="file" name="imageFileName" onchange="imgURL(this)">
-			<img src="#" id="imageView" width="100px" height="100px">
+			<img src="/ssg/product/imageFileDownload?imageFileName=${productInfo.imageFileName}" id="imageView" width="100px" height="100px">
 			<hr>
 			<input type="submit" value="상품등록">
 			<input type="button" onclick="history.back()" value="취소">

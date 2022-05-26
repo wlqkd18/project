@@ -14,7 +14,8 @@
 		<img src="/ssg/product/imageFileDownload?imageFileName=${productInfo.imageFileName}" width="300px" height="300px">
 	</div>
 	<div class="productInfoDiv">
-		<b>${productInfo.productName}</b>
+		<b>${productInfo.productName}</b><br>
+		<b>${productInfo.productPrice}&#8361;</b>
 	</div>
 	<div class="buttonDiv">
 		<input type="button" value="구매하기">

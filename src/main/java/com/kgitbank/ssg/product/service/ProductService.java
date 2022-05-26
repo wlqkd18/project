@@ -1,7 +1,7 @@
 package com.kgitbank.ssg.product.service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.text.DecimalFormat;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,14 @@ public class ProductService implements IProductService {
 
 	@Override
 	public void getProductInfo(String productType, Model model) {
-		model.addAttribute("productInfo", mapper.getProduct(productType));
+		DecimalFormat df = new DecimalFormat("###,###");
+		List<ProductDTO> dto = mapper.getProduct(productType);
+
+		for(ProductDTO p : dto) {
+			p.setProductPrice(df.format(p.getProductPrice()));
+		}
+		model.addAttribute("productInfo", dto);
+		
 	}
 
 	@Override
@@ -28,7 +35,7 @@ public class ProductService implements IProductService {
 		
 		ProductDTO dto = new ProductDTO();
 		dto.setProductName(mul.getParameter("productName"));
-		dto.setProductPrice(Integer.parseInt(mul.getParameter("productPrice")));
+		dto.setProductPrice(mul.getParameter("productPrice"));
 		dto.setProductType(mul.getParameter("productType"));
 		MultipartFile file = mul.getFile("imageFileName");
 		if(file.getSize() != 0) {
@@ -56,9 +63,16 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public void productInfo(int productNo, Model model) {
-		model.addAttribute("productInfo", mapper.getProductInfo(productNo));
-		
+	public void productInfo(int productNo, Model model, int num) {
+		if(num == 1) {
+			DecimalFormat df = new DecimalFormat("###,###");
+			ProductDTO dto = mapper.getProductInfo(productNo);		
+			dto.setProductPrice(df.format(dto.getProductPrice()));
+			model.addAttribute("productInfo", dto);
+		}else {
+			model.addAttribute("productInfo", mapper.getProductInfo(productNo));
+		}
+
 	}
 
 	@Override

@@ -17,10 +17,10 @@
 			<tr><th>가격</th><td>${productInfo.productPrice}</td></tr>
 			<tr><th>등록 날짜</th><td>${productInfo.saveDate}</td></tr>
 			<tr><th>분류</th><td>${productInfo.productType}</td></tr>
-			<tr><th>이미지 파일</th><td>${productInfo.imageFileName}</td><td></td></tr>
+			<tr><th>이미지 파일</th><td>${productInfo.imageFileName}</td><td><img src="/ssg/product/imageFileDownload?imageFileName=${productInfo.imageFileName}" width="100px" height="100px"></td></tr>
 			<tr>
 				<td>
-					<input type="submit" value="수정">
+					<input type="button" onclick="location.href='productModify?productNo=${productInfo.productNo}'" value="수정">
 					<input type="button" onclick="location.href='productDelete?productNo=${productInfo.productNo}&imageFileName=${productInfo.imageFileName}'" value="삭제">
 				</td>
 			</tr>

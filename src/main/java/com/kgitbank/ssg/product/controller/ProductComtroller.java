@@ -56,7 +56,7 @@ public class ProductComtroller {
 	
 	@GetMapping("productInfo")
 	public String productInfo(@RequestParam int productNo, Model model) {
-		ps.productInfo(productNo, model);
+		ps.productInfo(productNo, model, 1);
 		return "product/productInfo";
 	}
 	
@@ -79,8 +79,14 @@ public class ProductComtroller {
 	
 	@GetMapping("productForm")
 	public String outerForm(@RequestParam int productNo, Model model) {
-		ps.productInfo(productNo, model);
+		ps.productInfo(productNo, model, 0);
 		return "product/productForm";
+	}
+	
+	@GetMapping("productModify")
+	public String productModify(@RequestParam int productNo, Model model) {
+		ps.productInfo(productNo, model, 0);
+		return "product/productBoard";
 	}
 	
 }

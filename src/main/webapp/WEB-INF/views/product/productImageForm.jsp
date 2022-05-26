@@ -18,7 +18,7 @@
 						<a href="/ssg/product/productForm?productNo=${product.productNo}"><img src="/ssg/product/imageFileDownload?imageFileName=${product.imageFileName}" width=250px height=250px></a>
 						<div class="imageInfoDiv">
 							<b>${product.productName}</b><br>
-							<b>${product.productPrice}원</b>
+							<b>${product.productPrice}&#8361;</b>
 						</div>
 					</div>
 				</c:forEach>

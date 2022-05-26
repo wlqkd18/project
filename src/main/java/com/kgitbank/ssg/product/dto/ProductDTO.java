@@ -4,7 +4,7 @@ public class ProductDTO {
 
 	private int productNo;
 	private String productName;
-	private int productPrice;
+	private Object productPrice;
 	private int hit;
 	private String imageFileName;
 	private String saveDate;
@@ -28,10 +28,10 @@ public class ProductDTO {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public int getProductPrice() {
+	public Object getProductPrice() {
 		return productPrice;
 	}
-	public void setProductPrice(int productPrice) {
+	public void setProductPrice(Object productPrice) {
 		this.productPrice = productPrice;
 	}
 	public int getHit() {
