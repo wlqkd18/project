@@ -12,6 +12,7 @@ function memberDelete() {
 		alert("로그인이 필요합니다.")
 	}else if(confirm("정말 탈퇴하시겠습니까?")){
 		location.href="member/memberDelete?id=${loginUser}"
+		location.href="member/logout"
 	}
 }
 </script>
@@ -50,7 +51,7 @@ function memberDelete() {
 			<tr><td><a href="">주문 내역 조회</a></td></tr>
 			<tr><td><a href="">장바구니</a></td></tr>
 			<tr><td><a href="">후기</a></td></tr>
-			<tr><td><a href="member/logout" onclick="memberDelete()">회원 탈퇴</a></td></tr>
+			<tr><td><a href="" onclick="memberDelete()">회원 탈퇴</a></td></tr>
 		</table>
 	</div>
 </div>

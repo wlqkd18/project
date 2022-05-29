@@ -6,6 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function basket(){
+	$.ajax({
+		url : "basket?productNo=${productInfo.productNo}", type : "Get",
+		contentType : "application/json; charset=utf-8",
+		dataType : "text",
+		success: function(data){
+			if(data == "success"){
+				alert("추가되었습니다.")
+			}else{
+				alert("이미 물건이 추가되었는지 확인해주세요.")
+			}
+		} 
+	})
+}
+</script>
 </head>
 <body>
 <c:import url="../default/header.jsp"/>
@@ -19,8 +36,7 @@
 	</div>
 	<div class="buttonDiv">
 		<input type="button" value="구매하기">
-		<input type="button" value="찜하기">
-		<input type="button" value="장바구니"><br>
+		<input type="button" onclick="basket()" value="장바구니"><br>
 		<c:choose>
 			<c:when test="${productInfo.productType == 'Shoes'}">
 				<select>				

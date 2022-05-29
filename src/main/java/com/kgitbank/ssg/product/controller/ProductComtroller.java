@@ -41,7 +41,6 @@ public class ProductComtroller {
 	
 	@PostMapping("productSave")
 	public void productSave(MultipartHttpServletRequest mul, HttpServletRequest request, HttpServletResponse response) throws IOException {
-
 		String message = ps.productSave(mul);
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;charset=utf-8");
@@ -74,12 +73,13 @@ public class ProductComtroller {
 		File file = new File(ProductFileService.IMAGE_REPO + "\\" + imageFileName);
 		FileInputStream in = new FileInputStream(file);
 		FileCopyUtils.copy(in, response.getOutputStream());
+
 		in.close();
 	}
 	
 	@GetMapping("productForm")
 	public String outerForm(@RequestParam int productNo, Model model) {
-		ps.productInfo(productNo, model, 0);
+		ps.productInfo(productNo, model, 1);
 		return "product/productForm";
 	}
 	
@@ -87,6 +87,14 @@ public class ProductComtroller {
 	public String productModify(@RequestParam int productNo, Model model) {
 		ps.productInfo(productNo, model, 0);
 		return "product/productBoard";
+	}
+	
+	@PostMapping("modifySuccess")
+	public void modifySuccess(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException {
+		String message = ps.productModify(request);
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html;charset=utf-8");
+		out.print(message);
 	}
 	
 }

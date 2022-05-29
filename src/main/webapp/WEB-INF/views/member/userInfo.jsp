@@ -35,7 +35,7 @@ function memberDelete() {
 			</tr>
 			<tr>
 				<td><input type="button" class="btn btn-dark" onclick="location.href='memberModify?id=${userInfo.id}'" value="수정"></td>
-				<td><input type="button" class="btn btn-dark" onclick="history.back()" value="취소"></td>
+				<td><input type="button" class="btn btn-dark" onclick="location.href='/ssg/'" value="취소"></td>
 				<c:if test="${loginUser == 'admin'}">
 					<td><input type="button" class="btn btn-dark" onclick="memberDelete()" value="탈퇴">
 				</c:if>

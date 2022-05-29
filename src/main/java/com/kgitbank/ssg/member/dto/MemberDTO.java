@@ -6,7 +6,14 @@ public class MemberDTO {
 	private String pw;
 	private String email;
 	private String addr;
+	private String basket;
 	
+	public String getBasket() {
+		return basket;
+	}
+	public void setBasket(String basket) {
+		this.basket = basket;
+	}
 	public String getId() {
 		return id;
 	}

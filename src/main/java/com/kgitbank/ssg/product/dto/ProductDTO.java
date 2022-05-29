@@ -9,7 +9,14 @@ public class ProductDTO {
 	private String imageFileName;
 	private String saveDate;
 	private String productType;
+	private String originFileName;
 	
+	public String getOriginFileName() {
+		return originFileName;
+	}
+	public void setOriginFileName(String originFileName) {
+		this.originFileName = originFileName;
+	}
 	public String getProductType() {
 		return productType;
 	}

@@ -8,6 +8,7 @@
 		<result property="pw" column="pw"/>
 		<result property="email" column="email"/>
 		<result property="addr" column="addr"/>
+		<result property="basket" column="basket"/>
 	</resultMap>
 	
 	<select id="idCheck" resultMap="member">
@@ -34,5 +35,13 @@
 	<delete id="memberDelete">
 		delete from member where id=#{id}
 	</delete>
+	
+	<select id="getBasket" resultType="String">
+		select basket from member where id=#{id}
+	</select>
+	
+	<update id="setBasket">
+		update member set basket=#{str} where id=#{id}
+	</update>
 	
 </mapper>

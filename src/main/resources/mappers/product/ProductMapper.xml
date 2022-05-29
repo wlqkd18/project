@@ -11,6 +11,7 @@
 		<result property="imageFileName" column="image_file_name"/>		
 		<result property="saveDate" column="savedate"/>		
 		<result property="productType" column="product_type"/>				
+		<result property="originFileName" column="origin_file_name"/>				
 	</resultMap>
 	
 	<select id="getProduct" resultMap="product">
@@ -18,8 +19,8 @@
 	</select>
 	
 	<insert id="productSave">
-		insert into product(product_no, product_name, product_price, image_file_name, product_type)
-		values((select nvl(max(product_no) + 1, 1) from product), #{productName}, #{productPrice}, #{imageFileName}, #{productType})
+		insert into product(product_no, product_name, product_price, image_file_name, product_type, origin_file_name)
+		values((select nvl(max(product_no) + 1, 1) from product), #{productName}, #{productPrice}, #{imageFileName}, #{productType}, #{originFileName})
 	</insert>
 	
 	<select id="getProductList" resultMap="product">
@@ -34,6 +35,8 @@
 		delete from product where product_no=#{productNo}
 	</delete>
 	
-	
-	
+	<update id="productModify">
+		update product set product_name=#{productName}, product_price=#{productPrice}, product_type=#{productType}, image_file_name=#{imageFileName} where product_no = #{productNo}
+	</update> 
+		
 </mapper>

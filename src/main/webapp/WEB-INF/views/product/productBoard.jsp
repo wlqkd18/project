@@ -10,7 +10,6 @@
 <script type="text/javascript">
 function imgURL(data){
 	var file = data.files[0]
-	
 	if(file != ""){
 		var reader = new FileReader()
 		reader.readAsDataURL(file)
@@ -20,8 +19,11 @@ function imgURL(data){
 	}
 }
 function init(){
-	$("#checkOption").val("${productInfo.productType}").prop("selected", true);	
-
+	if(${productInfo != null}) {
+		$("#checkOption").val("${productInfo.productType}").prop("selected", true);
+		$("#imageView").attr("src", "/ssg/product/imageFileDownload?imageFileName=${productInfo.imageFileName}")
+	}
+	return
 }
 </script>
 </head>
@@ -29,7 +31,7 @@ function init(){
 <c:import url="../default/header.jsp"/>
 <div class="wrap">
 	<div class="productBoardDiv">
-		<form action="productSave" method="post" enctype="multipart/form-data">
+		<form action="${productInfo eq null ? 'productSave' : 'modifySuccess'}" method="post" enctype="multipart/form-data">
 			<b>상품명</b><br>
 			<input type="text" name="productName" value="${productInfo.productName}">
 			<hr>
@@ -47,9 +49,13 @@ function init(){
 			<hr>
 			<b>상품 이미지 파일</b><br>
 			<input type="file" name="imageFileName" onchange="imgURL(this)">
-			<img src="/ssg/product/imageFileDownload?imageFileName=${productInfo.imageFileName}" id="imageView" width="100px" height="100px">
+			<img src="#" id="imageView" width="100px" height="100px">
 			<hr>
-			<input type="submit" value="상품등록">
+			<input type="submit" value="${productInfo == null ? '상품등록' : '수정'}">
+			<c:if test="${productInfo != null}">
+				<input type="hidden" name="originFileName" value="${productInfo.imageFileName}">
+				<input type="hidden" name="productNo" value="${productInfo.productNo}">
+			</c:if>
 			<input type="button" onclick="history.back()" value="취소">
 		</form>
 	</div>
