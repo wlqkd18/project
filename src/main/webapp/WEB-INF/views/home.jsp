@@ -49,7 +49,7 @@ function memberDelete() {
 			<tr><td><a href="member/userInfo?id=${loginUser}">개인정보 수정</a></td></tr>
 			<tr><th>상품</th></tr>
 			<tr><td><a href="">주문 내역 조회</a></td></tr>
-			<tr><td><a href="">장바구니</a></td></tr>
+			<tr><td><a href="product/basketForm?id=${loginUser}">장바구니</a></td></tr>
 			<tr><td><a href="">후기</a></td></tr>
 			<tr><td><a href="" onclick="memberDelete()">회원 탈퇴</a></td></tr>
 		</table>

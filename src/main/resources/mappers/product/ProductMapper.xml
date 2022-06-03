@@ -38,5 +38,21 @@
 	<update id="productModify">
 		update product set product_name=#{productName}, product_price=#{productPrice}, product_type=#{productType}, image_file_name=#{imageFileName} where product_no = #{productNo}
 	</update> 
+
+	<select id="getProductBasket" resultMap="product" parameterType="java.util.ArrayList">
+		select * from product where product_no in 
+		<foreach collection='list' index='index' item='productNo' open='(' close=')' separator=','>
+			#{productNo}
+			<!-- 
+				collection = 전달받은 인자값(반드시 타입이 array 또는 list여야 한다.)
+				index = 목록의 위치값
+				item = 전달받은 인자값을 재 정의시 foreach문에서 사용할 변수명
+				open = 해당 구문이 시작할 때 넣을 문자
+				cloas = 해당 구문이 끝날 때 넣을 문자
+				separator = 한번 이상 반복할 때 반복되는 사이에 해당 문을 넣어준다.
+			 -->
+		</foreach>
+	</select>
+	
 		
 </mapper>

@@ -10,7 +10,8 @@
 <script type="text/javascript">
 function basket(){
 	$.ajax({
-		url : "basket?productNo=${productInfo.productNo}", type : "Get",
+		url : "basket?productNo=${productInfo.productNo}&size=" + $("#size").val(),
+		type : "Get",
 		contentType : "application/json; charset=utf-8",
 		dataType : "text",
 		success: function(data){
@@ -39,7 +40,7 @@ function basket(){
 		<input type="button" onclick="basket()" value="장바구니"><br>
 		<c:choose>
 			<c:when test="${productInfo.productType == 'Shoes'}">
-				<select>				
+				<select id="size">				
 					<option>260</option>
 					<option>265</option>
 					<option>270</option>
@@ -48,12 +49,12 @@ function basket(){
 				</select>
 			</c:when>
 			<c:when test="${productInfo.productType == 'Accessory'}">
-				<select>				
+				<select id="size">				
 					<option>FREE</option>
 				</select>
 			</c:when>
 			<c:when test="${productInfo.productType != 'Shoes' || productInfo.productType != 'Accessory'}">
-				<select>
+				<select id="size">
 					<option>M</option>
 					<option>L</option>
 					<option>XL</option>

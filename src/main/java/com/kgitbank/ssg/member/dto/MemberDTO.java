@@ -7,7 +7,14 @@ public class MemberDTO {
 	private String email;
 	private String addr;
 	private String basket;
+	private String basketSize;
 	
+	public String getSize() {
+		return basketSize;
+	}
+	public void setSize(String size) {
+		this.basketSize = size;
+	}
 	public String getBasket() {
 		return basket;
 	}

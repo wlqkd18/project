@@ -13,5 +13,6 @@ public interface IProductService {
 	public void productInfo(int productNo, Model model, int num);
 	public String productDelete(int productNo, String imageFileName);
 	public String productModify(MultipartHttpServletRequest request);
-	public boolean setBasket(String productNo, HttpServletRequest request);
+	public boolean setBasket(String productNo, String size,HttpServletRequest request);
+	public void getBasketList(String id, Model model);
 }

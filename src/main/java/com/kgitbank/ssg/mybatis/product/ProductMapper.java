@@ -15,4 +15,5 @@ public interface ProductMapper {
 	public ProductDTO getProductInfo(int productNo);
 	public int productDelete(int productNo);
 	public int productModify(ProductDTO dto);
+	public ArrayList<ProductDTO> getProductBasket(ArrayList basketNo);
 }

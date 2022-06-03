@@ -18,11 +18,12 @@ public class productAjaxController {
 	ProductService ps;
 	
 	@GetMapping(value = "basket", produces = "application/json; charset=utf-8")
-	public String basket(@RequestParam String productNo, HttpServletRequest request) {
-		boolean bool = ps.setBasket(productNo, request);
+	public String basket(@RequestParam String productNo, @RequestParam String size, HttpServletRequest request) {
+		boolean bool = ps.setBasket(productNo, size, request);
 		if(bool) {
 			return "success";
 		}
 		return "error";
 	}
+	
 }

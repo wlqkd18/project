@@ -94,6 +94,9 @@
 	.productImageInfoDiv img{
 		border: 1px solid black;
 	}
+	.priceSumDiv {
+		text-align: right;
+	}
 	
 </style>
 </head>

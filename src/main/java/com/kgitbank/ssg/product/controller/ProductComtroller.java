@@ -97,4 +97,10 @@ public class ProductComtroller {
 		out.print(message);
 	}
 	
+	@GetMapping("basketForm")
+	public String basketForm(@RequestParam String id, Model model) {
+		ps.getBasketList(id, model);
+		return "product/basketForm";
+	}
+	
 }

@@ -1,7 +1,9 @@
 package com.kgitbank.ssg.product.service;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -135,31 +137,70 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public boolean setBasket(String productNo, HttpServletRequest request) {
+	public boolean setBasket(String productNo, String size, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("loginUser");
 		int length = memberMapper.getBasket(id).split(",").length;
-		String[] basket = new String[length]; 
+		String[] basket = new String[length];
+		String[] basketSize = new String[length];
 		String str = null;
+		String sizeStr = null;
 		
 		if(memberMapper.getBasket(id).equals("nan")) {
 			str = 0 + "," + productNo;
+			sizeStr = 0 + "," + size;
 		}else {
 			for (int i = 0; i < length; i++) {
 				basket[i] = memberMapper.getBasket(id).split(",")[i];
+				basketSize[i] = memberMapper.getBasketSize(id).split(",")[i];
 			}
 			if(!Arrays.asList(basket).contains(productNo)) {
 				str = String.join(",", basket);
+				sizeStr = String.join(",", basketSize);
 				str += "," + productNo;
+				sizeStr += "," + size;
 			}else {
 				return false;
 			}
 		}
-		int result = memberMapper.setBasket(id, str);
+		int result = memberMapper.setBasket(id, str, sizeStr);
 		if(result == 1) {
 			return true;
 		}
 		return false;
 		
 	}
+
+	@Override
+	public void getBasketList(String id, Model model) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		int length = memberMapper.getBasket(id).split(",").length;
+		int priceSum = 0;
+		ArrayList<Integer> no = new ArrayList<>();
+		String[] basketNo = new String[length];
+		String[] basketSize = new String[length];
+		
+		for(int i = 0; i < length; i++) {
+			basketNo[i] = memberMapper.getBasket(id).split(",")[i];
+			basketSize[i] = memberMapper.getBasketSize(id).split(",")[i];
+		}
+		for(int i = 1; i < length; i++) {
+			map.put(basketNo[i], basketSize[i]);
+			no.add(Integer.parseInt(basketNo[i]));
+		}
+		
+		DecimalFormat df = new DecimalFormat("###,###");
+		ArrayList<ProductDTO> dto = mapper.getProductBasket(no);
+		for(int i = 0; i < dto.size(); i++) {
+			int price = Integer.parseInt(String.valueOf(dto.get(i).getProductPrice()));
+			priceSum += price;
+			dto.get(i).setProductPrice(df.format(price));
+		}
+		model.addAttribute("productInfo", dto);
+		model.addAttribute("sum", df.format(priceSum));
+		model.addAttribute("no", map.keySet());
+		model.addAttribute("size", map.values());		
+	}
+	
 }

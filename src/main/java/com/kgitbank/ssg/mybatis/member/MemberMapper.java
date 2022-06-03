@@ -15,6 +15,6 @@ public interface MemberMapper {
 	public List<MemberDTO> memberList(MemberDTO dto);
 	public void memberDelete(String id);
 	public String getBasket(String id);
-	public int setBasket(@Param(value = "id") String id, @Param(value = "str") String str);
-
+	public String getBasketSize(String id);
+	public int setBasket(@Param(value = "id") String id, @Param(value = "str") String str, @Param(value = "sizeStr") String sizeStr);
 }

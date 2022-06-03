@@ -9,6 +9,7 @@
 		<result property="email" column="email"/>
 		<result property="addr" column="addr"/>
 		<result property="basket" column="basket"/>
+		<result property="basketSize" column="basket_size"/>
 	</resultMap>
 	
 	<select id="idCheck" resultMap="member">
@@ -41,7 +42,12 @@
 	</select>
 	
 	<update id="setBasket">
-		update member set basket=#{str} where id=#{id}
+		update member set basket=#{str}, basket_size=#{sizeStr} where id=#{id}
 	</update>
+	
+	<select id="getBasketSize" resultType="String">
+		select basket_size from member where id=#{id}
+	</select>
+	
 	
 </mapper>
