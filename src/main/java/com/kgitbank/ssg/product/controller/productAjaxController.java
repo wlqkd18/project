@@ -26,4 +26,11 @@ public class productAjaxController {
 		return "error";
 	}
 	
+	@GetMapping(value = "basketRemove", produces = "application/json; charset=utf-8")
+	public void basketRemove(@RequestParam String productNo, HttpServletRequest request) {
+		ps.basketRemove(productNo, request);
+	}
+	
+	
+	
 }

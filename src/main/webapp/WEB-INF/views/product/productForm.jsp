@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+아임포트
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 function basket(){
@@ -23,6 +24,7 @@ function basket(){
 		} 
 	})
 }
+
 </script>
 </head>
 <body>
@@ -36,8 +38,8 @@ function basket(){
 		<b>${productInfo.productPrice}&#8361;</b>
 	</div>
 	<div class="buttonDiv">
-		<input type="button" value="구매하기">
-		<input type="button" onclick="basket()" value="장바구니"><br>
+		<input type="button" onclick="BootPay.request()" value="구매하기">
+		<input type="button" onclick="" value="장바구니"><br>
 		<c:choose>
 			<c:when test="${productInfo.productType == 'Shoes'}">
 				<select id="size">				

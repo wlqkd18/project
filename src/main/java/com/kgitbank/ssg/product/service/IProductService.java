@@ -15,4 +15,5 @@ public interface IProductService {
 	public String productModify(MultipartHttpServletRequest request);
 	public boolean setBasket(String productNo, String size,HttpServletRequest request);
 	public void getBasketList(String id, Model model);
+	public void basketRemove(String productNo, HttpServletRequest request);
 }

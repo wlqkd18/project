@@ -17,6 +17,18 @@ function productEA(data) {
 	}
 }
 
+function productRemove(data){
+	var div = document.getElementById("remove" + data)
+	
+	$.ajax({
+		url : "basketRemove?productNo=" + data,
+		type : "Get",
+		contentType : "application/json; charset=utf-8",
+		success : function(){
+			div.remove()	
+		}
+	})
+}
 </script>
 </head>
 <body>
@@ -25,12 +37,15 @@ function productEA(data) {
 	<div class="basketDiv">
 		<table class="table">
 			<c:forEach var="dto" items="${productInfo}">
-				<tr>
+				<tr id="remove${dto.productNo}">
 					<td><img src="imageFileDownload?imageFileName=${dto.imageFileName}" width="100px" height="100px"></td>
 					<td><a href="productForm?productNo=${dto.productNo}">${dto.productName}</a></td>
 					<td>${dto.productPrice}&#8361;</td>
 					<td>
 						<input type="number" value="1" id="${dto.productNo}" size="1px" min="1" max="10" step="1" onchange="productEA('${dto.productNo}')">
+					</td>
+					<td>
+						<a href="javascript:productRemove('${dto.productNo}')">X</a>
 					</td>
 				</tr>
 			</c:forEach>

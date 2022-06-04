@@ -174,33 +174,60 @@ public class ProductService implements IProductService {
 	@Override
 	public void getBasketList(String id, Model model) {
 		
-		HashMap<String, String> map = new HashMap<String, String>();
+		try {
+			HashMap<String, String> map = new HashMap<String, String>();
+			int length = memberMapper.getBasket(id).split(",").length;
+			int priceSum = 0;
+			ArrayList<Integer> no = new ArrayList<>();
+			String[] basketNo = new String[length];
+			String[] basketSize = new String[length];
+			
+			for(int i = 0; i < length; i++) {
+				basketNo[i] = memberMapper.getBasket(id).split(",")[i];
+				basketSize[i] = memberMapper.getBasketSize(id).split(",")[i];
+			}
+			for(int i = 1; i < length; i++) {
+				map.put(basketNo[i], basketSize[i]);
+				no.add(Integer.parseInt(basketNo[i]));
+			}
+			
+			DecimalFormat df = new DecimalFormat("###,###");
+			ArrayList<ProductDTO> dto = mapper.getProductBasket(no);
+			for(int i = 0; i < dto.size(); i++) {
+				int price = Integer.parseInt(String.valueOf(dto.get(i).getProductPrice()));
+				priceSum += price;
+				dto.get(i).setProductPrice(df.format(price));
+			}
+			model.addAttribute("productInfo", dto);
+			model.addAttribute("sum", df.format(priceSum));
+			model.addAttribute("no", map.keySet());
+			model.addAttribute("size", map.values());	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void basketRemove(String productNo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("loginUser");
+		ArrayList<String> basketNo = new ArrayList<>();
+		ArrayList<String> basketSize = new ArrayList<>();
 		int length = memberMapper.getBasket(id).split(",").length;
-		int priceSum = 0;
-		ArrayList<Integer> no = new ArrayList<>();
-		String[] basketNo = new String[length];
-		String[] basketSize = new String[length];
-		
 		for(int i = 0; i < length; i++) {
-			basketNo[i] = memberMapper.getBasket(id).split(",")[i];
-			basketSize[i] = memberMapper.getBasketSize(id).split(",")[i];
+			String no = memberMapper.getBasket(id).split(",")[i];
+			String size = memberMapper.getBasketSize(id).split(",")[i];
+			basketNo.add(no);
+			basketSize.add(size);
 		}
-		for(int i = 1; i < length; i++) {
-			map.put(basketNo[i], basketSize[i]);
-			no.add(Integer.parseInt(basketNo[i]));
-		}
-		
-		DecimalFormat df = new DecimalFormat("###,###");
-		ArrayList<ProductDTO> dto = mapper.getProductBasket(no);
-		for(int i = 0; i < dto.size(); i++) {
-			int price = Integer.parseInt(String.valueOf(dto.get(i).getProductPrice()));
-			priceSum += price;
-			dto.get(i).setProductPrice(df.format(price));
-		}
-		model.addAttribute("productInfo", dto);
-		model.addAttribute("sum", df.format(priceSum));
-		model.addAttribute("no", map.keySet());
-		model.addAttribute("size", map.values());		
+		int index = basketNo.indexOf(productNo);
+		basketNo.remove(index);
+		basketSize.remove(index);
+		String str = String.join(",", basketNo);
+		String sizeStr = String.join(",", basketSize);
+		System.out.println(str);
+		System.out.println(sizeStr);
+		int result = memberMapper.setBasket(id, str, sizeStr);
 	}
 	
 }
